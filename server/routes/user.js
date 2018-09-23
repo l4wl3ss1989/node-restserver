@@ -1,4 +1,8 @@
 const express = require('express');
+// ==========================
+// Using bcryptjs insted of bcrypt 
+// https://stackoverflow.com/questions/29320201/error-installing-bcrypt-with-npm
+// ==========================
 const bcrypt = require('bcryptjs');
 const _= require('underscore');
 const User = require('../models/user');

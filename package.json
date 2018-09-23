@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "bcryp": "sudo apt-get install -y build-essential python",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
