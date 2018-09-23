@@ -1,8 +1,12 @@
 require('./config/config');
 
 const express = require('express');
+const mongoose = require('mongoose');
+
 const app = express();
+
 const bodyParser = require('body-parser');
+const colors = require('colors/safe');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -10,36 +14,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
  
-app.get('/user', function (req, res) {
-  res.json('get User');
-});
-app.post('/user', function (req, res) {
+app.use( require('./routes/user') );
 
-  let body = req.body;
-
-  if(body.name === undefined){
-    res.status(400).json({
-      ok: false,
-      messaje: 'name required.'
-    });
-  }else{
-    res.json({
-      user: body
-    });
-  }
+mongoose.connect(process.env.ULR_DB, { useNewUrlParser: true }, (err, response)=>{
   
-});
-app.put('/user/:id', function (req, res) {
+  if(err) throw colors.red(err);
 
-  let id = req.params.id;
+  console.log(colors.green('Data Base ONLINE'));
 
-  res.json({
-    id
-  });
-
-});
-app.delete('/user', function (req, res) {
-  res.json('delete User');
 }); 
 
 app.listen(process.env.PORT, () => console.log('Listening port:', process.env.PORT));
