@@ -16,11 +16,7 @@ process.env.SEED = process.env.SEED || 'seed-development-coffee';
 // ==========================
 // Token Expire
 // ==========================
-// 60 seconds
-// 60 minuts
-// 24 hours
-// 30 days
-process.env.TOKEN_EXPIRE = 60 * 60 * 24 * 30;
+process.env.TOKEN_EXPIRE = '48h';
 
 // ==========================
 // Data Base

@@ -5,9 +5,11 @@ const express = require('express');
 // ==========================
 const bcrypt = require('bcryptjs');
 const _= require('underscore');
-const User = require('../models/user');
 const { verifyToken, verifyAdmin_Role } = require('../middlewares/authentication');
+
 const app = express();
+
+const User = require('../models/user');
 
 app.get('/user', verifyToken, (req, res) => {
 
@@ -20,7 +22,7 @@ app.get('/user', verifyToken, (req, res) => {
   let begin = req.query.begin || 0;
   begin = Number(begin);
 
-  let limit = req.query.limit || 5
+  let limit = req.query.limit || 5;
   limit = Number(limit);
 
   User.find({status: true}, 'name email role status google img')
