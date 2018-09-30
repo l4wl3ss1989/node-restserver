@@ -20,7 +20,7 @@ app.get('/products', verifyToken, (req, res) =>{
   let limit = req.query.limit || 5;
   limit = Number(limit);
 
-  Product.find( {available: true}, 'name unitPrice desc' )
+  Product.find( {available: true}, 'name unitPrice desc img' )
     .skip(begin)
     .limit(limit)
     .sort('name')

@@ -52,12 +52,38 @@ let verifyAdmin_Role = ( req, res, next ) => {
       }); 
   }
 
-  
+};
+
+// ==========================
+// Verify Image Token 
+// ==========================
+let verifyTokenImage = ( req, res, next ) => {
+
+  let token = req.query.token;
+
+  jwt.verify( token, process.env.SEED, (err, decoded) =>{
+
+    if(err){
+
+      return res.status(401).json({
+        ok: false,
+        err        
+        // err: {
+        //   message: 'Token not valid'
+        // }
+      });
+
+    }
+
+    req.user = decoded.user;
+    next();
+
+  });
 
 };
 
-
 module.exports = {
   verifyToken,
-  verifyAdmin_Role
+  verifyAdmin_Role,
+  verifyTokenImage
 }
